@@ -1,5 +1,7 @@
 package pl.ksa.freefi.ssn;
 
-record SsnHolder(String ssn) {
+import javax.validation.constraints.NotBlank;
+
+record SsnHolder(@NotBlank String ssn) {
 
 }

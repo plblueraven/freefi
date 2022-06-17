@@ -18,7 +18,8 @@ public class SsnValidator {
     public boolean isValid(String countryCode, String ssn) {
         final LocalisedSsnValidator validator = validators.get(countryCode);
         if (validator == null) {
-            throw new SsnFromUnsupportedCountryException("There is no proper validator for county code %s".formatted(countryCode));
+            throw new SsnFromUnsupportedCountryException("There is no proper validator for county code %s. You could try one of: %s"
+                    .formatted(countryCode, String.join(", ", validators.keySet())));
         }
         return validator.isValid(ssn);
     }
