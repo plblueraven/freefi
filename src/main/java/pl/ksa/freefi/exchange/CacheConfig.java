@@ -21,6 +21,7 @@ public class CacheConfig {
     public CacheManager cacheManager(ApilayerService apilayerService) {
         return new SpringCache2kCacheManager().addCaches(
                 b -> b.name(RATES_CACHE).expireAfterWrite(1, TimeUnit.HOURS).entryCapacity(1).refreshAhead(true)
+                        .permitNullValues(false)
                         .keyType(Exchange.class).valueType(BigDecimal.class)
                         .loader(key -> apilayerService.getRate(key).info().rate())
         );
